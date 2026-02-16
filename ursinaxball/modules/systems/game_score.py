@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from ursina import Entity, Quad, Text, Vec2, Vec3, camera
-
 from ursinaxball.common_values import GameState, TeamColor, TeamID
 from ursinaxball.objects.base import PhysicsObject
 
@@ -78,6 +76,8 @@ class GameScore:
         return f"{self.red} - {self.blue}"
 
     def get_time_entity(self) -> Entity:
+        from ursina import Text, Vec2
+        
         text_time = self.get_time_string()
         text_time_width = Text.get_width(text_time)
 
@@ -91,6 +91,8 @@ class GameScore:
         return time_text_entity
 
     def get_fixed_entities(self) -> Entity:
+        from ursina import Entity, Quad, Text, Vec2, Vec3, camera
+        
         background_score = Entity(
             parent=camera.ui,
             position=Vec3(0, 0.5 - Text.size * 1.25, 1),
@@ -127,6 +129,8 @@ class GameScore:
         return [background_score, red_score_square, blue_score_square]
 
     def get_string_entities(self) -> Entity:
+        from ursina import Text, Vec2
+        
         score_text_entity = Text(
             position=Vec2(-0.175, 0.5 - Text.size * 1.35),
             origin=Vec2(0, 0),
