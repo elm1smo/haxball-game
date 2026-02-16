@@ -3,7 +3,6 @@ from __future__ import annotations
 import copy
 
 import numpy as np
-from ursina import Entity
 
 from ursinaxball.common_values import CollisionFlag
 from ursinaxball.objects.base.physics_object import PhysicsObject
@@ -80,7 +79,9 @@ class Disc(PhysicsObject):
         if len(self.gravity.shape) > 0:
             self.gravity[1] *= -1
 
-    def get_entity(self) -> Entity:
+    def get_entity(self):
+        from ursina import Entity
+        
         disc_parent = Entity(
             x=self.position[0],
             y=self.position[1],
