@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from numpy import pi
-from ursina import Entity, Mesh, Pipe, Sky
 
 from ursinaxball.common_values import (
     DEFAULT_BORDER_COLOR,
@@ -36,6 +35,8 @@ class Background:
             self.fill_color = DEFAULT_FILL_COLOR
 
     def get_limit_entity(self) -> Entity | None:
+        from ursina import Entity, Mesh
+        
         if self.type not in ("grass", "hockey"):
             return None
 
@@ -62,7 +63,9 @@ class Background:
             )
             return limit_entity
 
-    def get_kickoff_circle_entity(self) -> Entity | None:
+    def get_kickoff_circle_entity(self):
+        from ursina import Entity, Mesh, Pipe
+        
         if self.type in ("grass", "hockey"):
             circle_vertices = PhysicsObject.arc(
                 x=0,
@@ -86,7 +89,9 @@ class Background:
 
             return kickoff_circle_entity
 
-    def get_kickoff_line_entity(self) -> Entity | None:
+    def get_kickoff_line_entity(self):
+        from ursina import Entity, Mesh
+        
         if self.type not in ("grass", "hockey"):
             return None
 
@@ -107,7 +112,9 @@ class Background:
             )
             return limit_entity
 
-    def get_fill_canvas(self) -> Entity:
+    def get_fill_canvas(self):
+        from ursina import Entity, Sky
+        
         color = self.color if self.color is not None else self.fill_color
         sky = Sky()
         sky = Entity(
