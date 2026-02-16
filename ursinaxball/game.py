@@ -11,7 +11,6 @@ from numpy.typing import NDArray
 from ursinaxball.common_values import CollisionFlag, GameState, TeamID
 from ursinaxball.modules import (
     GameActionRecorder,
-    GameRenderer,
     GameScore,
     PlayerHandler,
     resolve_collisions,
@@ -73,11 +72,12 @@ class Game:
             else None
         )
         self.enable_renderer = config.enable_renderer
-        self.renderer: GameRenderer | None = (
-            GameRenderer(self, config.enable_vsync, config.fov)
-            if config.enable_renderer
-            else None
-        )
+
+        if self.enable_renderer:
+            from ursinaxball.modules.systems.game_renderer import GameRenderer
+            self.renderer = GameRenderer(self, config.enable_vsync, config.fov)
+        else:
+            self.renderer = None
 
     def add_player(self, player: PlayerHandler) -> None:
         self.players.append(player)
