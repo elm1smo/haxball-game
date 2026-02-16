@@ -3,7 +3,6 @@ from __future__ import annotations
 from math import pi, tan
 
 import numpy as np
-from ursina import Entity, Pipe
 
 from ursinaxball.common_values import CollisionFlag
 from ursinaxball.objects.base.physics_object import PhysicsObject
@@ -152,7 +151,8 @@ class Segment(PhysicsObject):
     def get_y_symmetry_after(self):
         self.circle_tangeant = [self.circle_tangeant[1], self.circle_tangeant[0]]
 
-    def get_entity(self) -> Entity:
+    def get_entity(self):
+        from ursina import Entity, Pipe
         if self.visible is False:
             return None
 
