@@ -34,7 +34,7 @@ class Background:
             self.border_color = DEFAULT_BORDER_COLOR
             self.fill_color = DEFAULT_FILL_COLOR
 
-    def get_limit_entity(self) -> Entity | None:
+    def get_limit_entity(self):
         from ursina import Entity, Mesh
         
         if self.type not in ("grass", "hockey"):
